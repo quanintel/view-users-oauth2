@@ -4,8 +4,26 @@ p b {
 
 .container {
   border-radius: 10px;
+  padding: 50px 50px;
   margin-top: 15px;
   margin-bottom: 15px;
   background-color: #d0bdf4;
   height: calc(100vh - 30px);
+  overflow-y: auto;
+
+  .row-top {
+    height: calc(100vh - 800px);
+  }
+
+  .table {
+    color: white;
+    border-radius: 10px;
+    background-color: #212529;
+  }
+}
+
+.active {
+  cursor: pointer;
+  color: #212529;
+  background-color: yellow;
 }

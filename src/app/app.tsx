@@ -1,41 +1,64 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Badge, Button, Col, Container, Row, Table } from 'react-bootstrap';
 import './app.scss';
+import { useEffect, useState } from 'react';
 
 export function App() {
+  const [employee, setEmployee] = useState<any[]>([]);
+  const [employeeSelected, setEmployeeSelected] = useState<any>();
+
+  const onClickViewEmployee = () => {
+    alert(JSON.stringify(employeeSelected));
+  };
+
+  const onClickRow = (item: any) => {
+    setEmployeeSelected(item);
+    console.log('Employee Selected', item);
+  };
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/todos'
+      );
+      const responsePaser = await response.json();
+      setEmployee(responsePaser);
+    })();
+  }, []);
+
   return (
     <Container className="container">
-      <Row>
-        
+      <Row className="mb-2">
+        <Button className="mr-2">Refresh</Button>
+        <Button onClick={onClickViewEmployee}>View employee</Button>
       </Row>
       <Row>
-        <Table striped bordered hover variant="dark">
+        <Table className="table" bordered>
           <thead>
             <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
+              <th>Id</th>
+              <th>User Id</th>
+              <th>Title</th>
+              <th>Completed</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            {employee.map((item) => (
+              <tr
+                onClick={() => onClickRow(item)}
+                className={
+                  '' +
+                  employeeSelected && employeeSelected?.id === item.id
+                    ? 'active'
+                    : ''
+                }
+              >
+                <td>{item.id}</td>
+                <td>{item.userId}</td>
+                <td>{item.title}</td>
+                <td>{item.completed ? 'Completed' : 'Not Complete'}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Row>
