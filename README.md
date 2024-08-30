@@ -2,12 +2,23 @@
 
 # View Users OAuth2
 
-### Node JS
-- `nvm install 18 LTS`
+## Các bước cài đặt và chạy dự án
+- Node: v18.20.4 LTS (npm v10.7.0)
 
-- `Node: v18.20.4 LTS (npm v10.7.0)`
+- Cài đặt NodeJS bản 18 
+- https://nodejs.org/en/download/package-manager
 
-### Nx Fast CI Create React App, Webpack, Sass
+
+- Sau đó chạy lệnh để lấy node_modules theo package.json
+- `npm install`
+
+
+- Chạy dự án
+- `npm start`
+
+## Thông tin thêm khi tạo mới dự án
+#### Nx Fast CI Create React App, Webpack, Sass
+
 - `npm add --global nx@18.3.5`
 - `npx create-nx-workspace@18.3.5`
     
@@ -28,11 +39,13 @@
     ✔ Set up CI with caching, distribution and test deflaking · skip
 
     ✔ Would you like remote caching to make your build faster? · skip
-    
-### Bootstrap 4
-- `npm install react-bootstrap bootstrap@4.6.0`
+
+#### Bootstrap 5
+- `npm install react-bootstrap bootstrap@5.3.3`
 
 - styles.scss => `@import "~bootstrap/scss/bootstrap";`
 
+#### REST API Bitrix
 
+- https://training.bitrix24.com/rest_help/users/user_get.php
 
