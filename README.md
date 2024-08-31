@@ -8,7 +8,7 @@
 - Cài đặt NodeJS bản 18 
 - https://nodejs.org/en/download/package-manager
 
-- Chạy lệnh install trong thư mục view-users-oauth/backend'
+- Chạy lệnh install trong thư mục view-users-oauth/backend
 - `npm install`
 - `npm start`
 
