@@ -49,7 +49,7 @@ module.exports = (app) => {
     }
 
     const employee = await GetEmployee(token.token);
-    if (!token) {
+    if (!employee) {
       res.json({ message: 'Có lỗi khi lấy employee !' });
       return;
     }
