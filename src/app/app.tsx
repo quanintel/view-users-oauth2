@@ -10,7 +10,13 @@ import {
 
 import './app.scss';
 import { useEffect, useState } from 'react';
-import ApiContext, { AUTHORIZE_URL } from './apiContext';
+
+const GetEmployee = async () => {
+  return await fetch(`http://localhost:5000/users`, {
+    method: 'GET',
+    redirect: 'follow',
+  }).then((response) => response.json());
+};
 
 export function App() {
   const [show, setShow] = useState(false);
@@ -33,17 +39,12 @@ export function App() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const token = await ApiContext.GetToken();
-      if (!token) {
-        alert('Error Get Token');
-        return;
-      }
-      const employee = await ApiContext.GetEmployee(token.token);
+      const employee = await GetEmployee();
       if (!employee) {
         alert('Error Get Employee');
         return;
       }
-      setEmployee(employee.result);
+      setEmployee(employee);
     } catch (error) {
       alert(error);
       console.error(error);
@@ -62,15 +63,6 @@ export function App() {
     <>
       <Container className="container">
         <div className="mb-2 d-flex gap-2">
-          <a
-            className="btn btn-primary"
-            href={AUTHORIZE_URL}
-            role="button"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Authorize
-          </a>
           <Button className="mr-2" onClick={fetchData}>
             Refresh
           </Button>
@@ -117,18 +109,32 @@ export function App() {
             <>
               <ListGroup>
                 <ListGroup.Item>ID: {employeeSelected.ID}</ListGroup.Item>
-                <ListGroup.Item>XML_ID: {employeeSelected.XML_ID}</ListGroup.Item>
-                <ListGroup.Item>ACTIVE: {employeeSelected.ACTIVE ? 'ACTIVE' : 'DEACTIVATE'}</ListGroup.Item>
+                <ListGroup.Item>
+                  XML_ID: {employeeSelected.XML_ID}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  ACTIVE: {employeeSelected.ACTIVE ? 'ACTIVE' : 'DEACTIVATE'}
+                </ListGroup.Item>
                 <ListGroup.Item>NAME: {employeeSelected.NAME}</ListGroup.Item>
-                <ListGroup.Item>LAST_NAME: {employeeSelected.LAST_NAME}</ListGroup.Item>
-                <ListGroup.Item>SECOND_NAME: {employeeSelected.SECOND_NAME}</ListGroup.Item>
+                <ListGroup.Item>
+                  LAST_NAME: {employeeSelected.LAST_NAME}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  SECOND_NAME: {employeeSelected.SECOND_NAME}
+                </ListGroup.Item>
                 <ListGroup.Item>EMAIL: {employeeSelected.EMAIL}</ListGroup.Item>
-                <ListGroup.Item>LAST_LOGIN: {employeeSelected.LAST_LOGIN}</ListGroup.Item>
+                <ListGroup.Item>
+                  LAST_LOGIN: {employeeSelected.LAST_LOGIN}
+                </ListGroup.Item>
                 <ListGroup.Item>
                   DATE_REGISTER: {employeeSelected.DATE_REGISTER}
                 </ListGroup.Item>
-                <ListGroup.Item>IS_ONLINE: {employeeSelected.IS_ONLINE ? 'ONLINE' : 'OFFLINE'}</ListGroup.Item>
-                <ListGroup.Item>USER_TYPE: {employeeSelected.USER_TYPE}</ListGroup.Item>
+                <ListGroup.Item>
+                  IS_ONLINE: {employeeSelected.IS_ONLINE ? 'ONLINE' : 'OFFLINE'}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  USER_TYPE: {employeeSelected.USER_TYPE}
+                </ListGroup.Item>
               </ListGroup>
 
               <pre>{JSON.stringify(employeeSelected, null, 4)}</pre>

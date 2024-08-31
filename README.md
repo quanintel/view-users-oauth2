@@ -8,15 +8,19 @@
 - Cài đặt NodeJS bản 18 
 - https://nodejs.org/en/download/package-manager
 
-
-- Sau đó chạy lệnh để lấy node_modules theo package.json
+- Chạy lệnh install trong thư mục view-users-oauth/backend'
 - `npm install`
+- `npm start`
 
 
-- Chạy dự án
+- Sau đó chạy install trong thư mục view-users-oauth chạy FE
+- `npm install`
 - `npm start`
 
 ## Thông tin thêm khi tạo mới dự án
+
+#### NodeJs + Express + Cors + Axios
+
 #### Nx Fast CI Create React App, Webpack, Sass
 
 - `npm add --global nx@18.3.5`
